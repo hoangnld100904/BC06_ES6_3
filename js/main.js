@@ -1,4 +1,5 @@
 const quanlyTask = new TaskManager;
+
 function setLocalData() {
     localStorage.setItem('taskData', JSON.stringify(quanlyTask.taskArray))
 }
@@ -44,15 +45,20 @@ function showData(array) {
     undoneHTML.innerHTML = undoneContent
     var completeHTML = document.getElementById('completed')
     completeHTML.innerHTML = completeContent
-    
+
 }
 
 function addNewTask() {
     var taskDesc = document.getElementById('newTask').value
-    var newTask = new Task(taskDesc, 'undone')
-    quanlyTask.themTask(newTask)
-    setLocalData()
-    getLocalData()
+    if (taskDesc != '') {
+        var newTask = new Task(taskDesc, 'undone')
+        quanlyTask.themTask(newTask)
+        setLocalData()
+        getLocalData()
+    }
+    else {
+        alert('Bạn chưa nhập dữ liệu')
+    }
 }
 function deleteTask(desc) {
     quanlyTask.xoaTask(desc)
