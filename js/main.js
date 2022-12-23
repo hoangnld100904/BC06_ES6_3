@@ -9,6 +9,7 @@ function getLocalData() {
         // addButtonEvent()
     }
 }
+getLocalData()
 function showData(array) {
     var undoneTask = []
     var completeTask = []
@@ -26,16 +27,16 @@ function showData(array) {
     undoneTask.map((task, index) => {
         undoneContent += `<li>${task.description} 
               <div>
-                    <span class="buttons"  id="removeTask"><i class="fa fa-trash-alt remove"></i></span>
-                    <span class="buttons" id="complete_button"><i class="fa fa-check-circle complete"></i></span>
+                    <span class="buttons"  id="removeTask" onclick="deleteTask('${task.description}')"><i class="fa fa-trash-alt remove"></i></span>
+                    <span class="buttons" id="complete_button" onclick="completeTask('${task.description}')"><i class="fa fa-check-circle complete"></i></span>
                </div>
          </li>`
     })
     completeTask.map((task, index) => {
         completeContent += `<li>${task.description}
         <div>
-              <span class="buttons" id="removeTask"><i class="fa fa-trash-alt remove" onclick="quanlyTask.xoaTask(${task.description}"></i></span>
-          <span class="buttons" id="complete_button"><i class="fa fa-check-circle complete"></i></span>
+              <span class="buttons" id="removeTask" onclick="deleteTask('${task.description}')"><i class="fa fa-trash-alt remove"></i></span>
+          <span class="buttons" id="complete_button" onclick="uncompleteTask('${task.description}')"><i class="fa fa-check-circle complete fas"></i></span>
          </div>
    </li>`
     })
@@ -53,8 +54,18 @@ function addNewTask() {
     setLocalData()
     getLocalData()
 }
-function deleteTask(id) {
-    quanlyTask.xoaTask(id)
+function deleteTask(desc) {
+    quanlyTask.xoaTask(desc)
+    setLocalData()
+    getLocalData()
+}
+function completeTask(desc) {
+    quanlyTask.hoanthanhTask(desc)
+    setLocalData()
+    getLocalData()
+}
+function uncompleteTask(desc) {
+    quanlyTask.chuahoanthanhTask(desc)
     setLocalData()
     getLocalData()
 }
