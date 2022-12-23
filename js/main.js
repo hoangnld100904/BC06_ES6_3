@@ -1,5 +1,5 @@
 const quanlyTask = new TaskManager;
-
+const valdiation = new Valdiation;
 function setLocalData() {
     localStorage.setItem('taskData', JSON.stringify(quanlyTask.taskArray))
 }
@@ -50,15 +50,13 @@ function showData(array) {
 
 function addNewTask() {
     var taskDesc = document.getElementById('newTask').value
-    if (taskDesc != '') {
-        var newTask = new Task(taskDesc, 'undone')
-        quanlyTask.themTask(newTask)
-        setLocalData()
-        getLocalData()
-    }
-    else {
-        alert('Bạn chưa nhập dữ liệu')
-    }
+    var isValid= true
+    isValid &= valdiation.checkEmpty(taskDesc, 'Bạn chưa nhập dữ liệu kìa!!!!') && valdiation.checkExisted(taskDesc, 'Công việc bạn đang thêm đã tồn tại!!!', quanlyTask.taskArray)
+     if(isValid) {var newTask = new Task(taskDesc, 'undone')
+    quanlyTask.themTask(newTask)
+    setLocalData()
+    getLocalData()
+}
 }
 function deleteTask(desc) {
     quanlyTask.xoaTask(desc)
