@@ -75,3 +75,44 @@ function uncompleteTask(desc) {
     setLocalData()
     getLocalData()
 }
+function sortAtoZ() {
+    var sortArray = quanlyTask.taskArray
+    sortArray.sort((a, b) => {
+        const nameA = a.description.toUpperCase(); // ignore upper and lowercase
+        const nameB = b.description.toUpperCase(); // ignore upper and lowercase
+        if (nameA < nameB) {
+            return -1;
+        }
+        if (nameA > nameB) {
+            return 1;
+        }
+
+        // names must be equal
+        return 0;
+
+    })
+    console.log(sortArray)
+    showData(sortArray)
+}
+
+
+function sortZtoA() {
+    var sortArray = quanlyTask.taskArray
+    sortArray.sort((a, b) => {
+        const nameA = a.description.toUpperCase(); // ignore upper and lowercase
+        const nameB = b.description.toUpperCase(); // ignore upper and lowercase
+        if (nameA < nameB) {
+            return -1;
+        }
+        if (nameA > nameB) {
+            return 1;
+        }
+
+        // names must be equal
+        return 0;
+
+    })
+    sortArray = sortArray.reverse()
+    console.log(sortArray)
+    showData(sortArray)
+}

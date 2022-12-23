@@ -6,7 +6,7 @@ function TaskManager(){
     this.findIndex=(desc)=>{
         let vitri=-1;
         vitri= this.taskArray.findIndex((task)=> desc == task.description)
-        console.log(vitri)
+        // console.log(vitri)
         return vitri
     }
     this.xoaTask=(desc)=>{
